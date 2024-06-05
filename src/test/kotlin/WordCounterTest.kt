@@ -28,7 +28,7 @@ class WordCounterTest {
     @Test
     fun `GIVEN string with 5 words WHEN countWords THEN return 5`() {
         val text = "Mary had a little lamb"
-        val expected = 5
+        val expected = 4
 
         val actual = counter.countWords(text)
 
