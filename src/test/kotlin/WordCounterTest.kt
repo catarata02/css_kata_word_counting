@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class WordCounterTest {
-    val counter = WordCounter()
+    private val counter = WordCounter()
 
     @Test
     fun `GIVEN empty string WHEN countWords THEN return 0`() {
@@ -76,6 +76,16 @@ class WordCounterTest {
         val actual = counter.countWordsFromString(text)
 
         assertEquals(expectedAverage, actual.averageWordLength)
+    }
+
+    @Test
+    fun `GIVEN string with default text WHEN countWords THEN index is available`() {
+        val text = "Mary had a little lamb"
+        val expectedIndex  = listOf("had", "lamb", "little", "Mary")
+
+        val actual = counter.countWordsFromString(text)
+
+        assertEquals(expectedIndex, actual.wordsIndex)
     }
 
     @Test

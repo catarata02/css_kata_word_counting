@@ -27,13 +27,21 @@ class WordCounter(
 
     private fun filterOutStopWords(tokens: List<String>) = tokens.filter { !stopwords.contains(it) }
 
-    private fun calculateCountsForTokens(tokensWithoutStopWords: List<String>) =
-        WordCountResult(
+    private fun calculateCountsForTokens(tokensWithoutStopWords: List<String>): WordCountResult {
+        val uniqueWordsSet = tokensWithoutStopWords.toSet()
+        return WordCountResult(
             words = tokensWithoutStopWords.count(),
-            uniqueWords = tokensWithoutStopWords.toSet().count(),
-            averageWordLength = tokensWithoutStopWords.map { it.length }.average()
+            uniqueWords = uniqueWordsSet.count(),
+            averageWordLength = tokensWithoutStopWords.map { it.length }.average(),
+            wordsIndex = uniqueWordsSet.toList().sortedBy { it.lowercase() }
         )
+    }
 
 }
 
-data class WordCountResult(val words: Int, val uniqueWords: Int, val averageWordLength: Double)
+data class WordCountResult(
+    val words: Int,
+    val uniqueWords: Int,
+    val averageWordLength: Double,
+    val wordsIndex: List<String>
+)
