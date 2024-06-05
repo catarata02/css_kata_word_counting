@@ -1,4 +1,3 @@
-import org.example.WordCountResult
 import org.example.WordCounter
 import java.io.File
 import kotlin.test.Test
@@ -58,13 +57,25 @@ class WordCounterTest {
     }
 
     @Test
-    fun `GIVEN string with multiple occurences of words WHEN countWords THEN count number of unique words`() {
+    fun `GIVEN string with multiple occurrences of words WHEN countWords THEN count number of unique words`() {
         val text = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall."
-        val expected = WordCountResult(words = 7, uniqueWords = 6)
+        val expectedWords = 7
+        val expectedUniqueWords = 6
 
         val actual = counter.countWordsFromString(text)
 
-        assertEquals(expected, actual)
+        assertEquals(expectedWords, actual.words)
+        assertEquals(expectedUniqueWords, actual.uniqueWords)
+    }
+
+    @Test
+    fun `GIVEN string with multiple words WHEN countWords THEN average word length is correct`() {
+        val text = "Mary had a little lamb"
+        val expectedAverage = 4.25
+
+        val actual = counter.countWordsFromString(text)
+
+        assertEquals(expectedAverage, actual.averageWordLength)
     }
 
     @Test
