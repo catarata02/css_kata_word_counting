@@ -4,7 +4,7 @@ import java.io.File
 
 fun main(args: Array<String>) {
     val wordCounter = WordCounter()
-    val count: Int
+    val count: WordCountResult
     if (args.isEmpty()) {
         print("Enter text: ")
         val text = readln()
@@ -12,6 +12,6 @@ fun main(args: Array<String>) {
     } else {
         count = wordCounter.countWordsFromFile(File(args[0].trim()))
     }
-    print("Number of words: $count")
+    print("Number of words: ${count.words}, unique: ${count.uniqueWords}")
     println()
 }

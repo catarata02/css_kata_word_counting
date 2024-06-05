@@ -1,3 +1,4 @@
+import org.example.WordCountResult
 import org.example.WordCounter
 import java.io.File
 import kotlin.test.Test
@@ -13,7 +14,7 @@ class WordCounterTest {
 
         val actual = counter.countWordsFromString(text)
 
-        assertEquals(expected, actual)
+        assertEquals(expected, actual.words)
     }
 
     @Test
@@ -23,7 +24,7 @@ class WordCounterTest {
 
         val actual = counter.countWordsFromString(text)
 
-        assertEquals(expected, actual)
+        assertEquals(expected, actual.words)
     }
 
     @Test
@@ -33,7 +34,7 @@ class WordCounterTest {
 
         val actual = counter.countWordsFromString(text)
 
-        assertEquals(expected, actual)
+        assertEquals(expected, actual.words)
     }
 
     @Test
@@ -43,13 +44,23 @@ class WordCounterTest {
 
         val actual = counter.countWordsFromString(text)
 
-        assertEquals(expected, actual)
+        assertEquals(expected, actual.words)
     }
 
     @Test
     fun `GIVEN string with 5 words with empty spaces in between words WHEN countWords THEN return 5`() {
         val text = "Mary   had a    little lamb"
         val expected = 4
+
+        val actual = counter.countWordsFromString(text)
+
+        assertEquals(expected, actual.words)
+    }
+
+    @Test
+    fun `GIVEN string with multiple occurences of words WHEN countWords THEN count number of unique words`() {
+        val text = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall."
+        val expected = WordCountResult(words = 9, uniqueWords = 7)
 
         val actual = counter.countWordsFromString(text)
 
@@ -63,6 +74,6 @@ class WordCounterTest {
 
         val actual = counter.countWordsFromFile(file)
 
-        assertEquals(expected, actual)
+        assertEquals(expected, actual.words)
     }
 }
