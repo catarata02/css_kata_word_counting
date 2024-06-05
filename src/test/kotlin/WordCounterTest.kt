@@ -60,7 +60,7 @@ class WordCounterTest {
     @Test
     fun `GIVEN string with multiple occurences of words WHEN countWords THEN count number of unique words`() {
         val text = "Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall."
-        val expected = WordCountResult(words = 9, uniqueWords = 7)
+        val expected = WordCountResult(words = 7, uniqueWords = 6)
 
         val actual = counter.countWordsFromString(text)
 

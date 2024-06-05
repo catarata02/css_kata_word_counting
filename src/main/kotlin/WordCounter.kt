@@ -6,7 +6,7 @@ class WordCounter(
     stopwordsResource: String = "/stopwords.txt",
 ) {
     private val stopwords: List<String> = parseStopWords(stopwordsResource)
-    private val wordRegex = Regex("[a-zA-z]+")
+    private val wordRegex = Regex("[a-zA-z\\-]+")
 
     fun countWordsFromString(text: String): WordCountResult {
         val tokens = tokenizeWords(text)
