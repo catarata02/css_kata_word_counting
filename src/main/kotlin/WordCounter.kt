@@ -11,8 +11,13 @@ class WordCounter(
         if (text.isBlank()) {
             return 0
         }
-        val tokens = text.split(" ")
-        val tokensWithoutStopwords = tokens.filter { !stopwords.contains(it) }
-        return tokensWithoutStopwords.count()
+        val tokens = tokenizeWords(text)
+        val tokensWithoutStopWords = filterOutStopWords(tokens)
+        return tokensWithoutStopWords.count()
     }
+
+    private fun tokenizeWords(text: String) = text.split(" ")
+
+    private fun filterOutStopWords(tokens: List<String>) = tokens.filter { !stopwords.contains(it) }
+
 }
